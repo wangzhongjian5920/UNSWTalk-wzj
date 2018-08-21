@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block body_contents %}
+
+<fieldset>
+
+<!-- Form Name -->
+    <legend><h2>Create a new account right now!</h2></legend>
+
+<!-- Text input-->
+
+    <div class="form-group">
+
+      <div class="col-md-4">
+      <form action="{{ url_for('createDone') }}" method=post>
+          ZID
+          <input type=text name="ZID"  class="form-control input-md" required="" type="text">
+            Password
+          <input type=text name="password" class="form-control input-md" required="" type="text">
+
+            Name
+
+          <input type=text name="name"  class="form-control input-md" required="" type="text">
+            Birthday
+
+          <input type=text name="birthday"  class="form-control input-md" required="" type="text">
+           Home_suburb
+
+          <input type=text name="address"  class="form-control input-md" required="" type="text">
+            Program
+
+          <input type=text name="program"  class="form-control input-md" required="" type="text">
+
+            Email
+          <input type=text name="email"  class="form-control input-md" required="" type="text">
+            Description
+          <textarea class="form-control" id="textarea" name="details"></textarea>
+            Thank you!
+          <a href="{{ url_for('login') }}">Cancel</a>
+          <input type="submit" value="Save" class="tfbutton" style="height: 40px; width: 100px;">
+
+      </form>
+      </div>
+    </div>
+
+
+</fieldset>
+
+
+
+{% endblock %}

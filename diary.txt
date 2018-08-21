@@ -1,0 +1,15 @@
+
+
+19/10 settle down the sqlite to create the databse
+
+21/10 start to do the level 0
+
+23/10 fix the bug on insetTable.py and doing level 0
+
+24/10 finish level 0 and start to level 1 and some subset of level 2
+
+26/10 finished level 1 and level 2
+
+28/10 start to do some feature of level 3
+
+29/10 doing some feature of level

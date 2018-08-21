@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block body_contents %}
+    <br><br>
+
+
+    {% if not session.logged_in %}
+          <h2>Welcome to UNSWtalk</h2>
+          {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+            <br>
+          <form action="{{ url_for('login') }}" method=post>
+            <dl>
+              <dt>Zid:
+              <dd><input type=text name=zid>
+              <dt>Password:
+              <dd><input type=password name=password>
+              <dd><input type=submit value=Login>
+            </dl>
+          </form>
+        <a href="/createAccount">Create a new account</a>
+    {% else %}
+
+        <form action="{{ url_for('makePost') }}" method=post>
+
+              <h2>Make a post today!</h2><br>
+              <textarea name=post id="taid" cols="35" wrap="soft" class="post"></textarea>
+              <button value="unfollow" type="submit" class="btn btn-primary" style="margin-bottom: 25px;">Post!</button>
+
+          </form><br>
+
+
+        <div>
+        {%- for item in postList %}
+            <a href="{{url_for('product',var=item.id)}}">
+                <img src={{ item.photo }} alt="No" style="width: 50px;height: 50px;">
+            </a>
+            <a href="{{url_for('product',var=item.id)}}">
+                {{ item.poster }}
+            </a>
+             {{ item.time }}<br>
+             {{ item.content }}<br>
+
+            <a class="comment" style="cursor: pointer; text-decoration: underline; color: lightskyblue;color: lightskyblue">Show all comments and reply</a>
+                <div class="commentShow" style="display:none">
+
+                    <form action="{{ url_for('makeComment') }}" method=post>
+                    <textarea name=comment id="taid" cols="35" wrap="soft"></textarea>
+                    <input type="hidden" name='zID' value={{ item.id }}>
+                    <input type="hidden" name='postID' value={{ item.postID }}>
+                    <button value="comment" type="submit" class="btn btn-primary" style="margin-bottom: 25px;">comment</button>
+                    </form>
+
+
+                {%- for comment in commentList %}
+                    {% if comment.fromPost == item.postID %}
+                        Comment:
+                        <a href="{{url_for('product',var=comment.id)}}">
+                            <img src={{ comment.photo }} alt="No" style="width: 50px;height: 50px;">
+                        </a>
+                        <a href="{{url_for('product',var=comment.id)}}">
+                            {{ comment.poster }}
+                        </a>
+
+                        {{ comment.time }}  :
+                        <a class="reply" style="cursor: pointer;">{{ comment.content }}</a><br>
+                                <div class="replyShow" style="display:none">
+
+                                    <form action="{{ url_for('makeReply') }}" method=post>
+                                    <textarea name=reply id="taid" cols="35" wrap="soft"></textarea>
+                                    <input type="hidden" name='zID' value={{ comment.id }}>
+                                    <input type="hidden" name='commentID' value={{ comment.postID }}>
+                                    <button value="reply" type="submit" class="btn btn-primary" style="margin-bottom: 25px;">reply</button>
+                                    </form>
+
+
+
+                                {%- for reply in replyList %}
+                                    {% if reply.fromComment == comment.postID %}
+                                        reply here!!! :
+                                        <a href="{{url_for('product',var=reply.id)}}">
+                                            <img src={{ reply.photo }} alt="No" style="width: 50px;height: 50px;">
+                                        </a>
+                                        <a href="{{url_for('product',var=reply.id)}}">
+                                            {{ reply.poster }}
+                                        </a>
+
+                                        {{ reply.time }}  :
+                                        {{ reply.content }}<br>
+
+                                    {% endif %}
+                                {%- endfor -%}
+                                </div>
+
+
+                    {% endif %}
+                {%- endfor -%}</div><br><br>
+            <br>
+        {%- endfor -%}
+        </div>
+
+
+    {% endif %}
+{% endblock %}

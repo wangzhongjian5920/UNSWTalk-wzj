@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body_contents %}
+
+    <form action="{{ url_for('updateProfile') }}" method=post>
+            Password
+          <input type=text name="password" class="form-control input-md" type="text">
+
+            Name
+
+          <input type=text name="name"  class="form-control input-md" type="text">
+            Birthday
+
+          <input type=text name="birthday"  class="form-control input-md" type="text">
+            Home_suburb
+
+          <input type=text name="address"  class="form-control input-md" type="text">
+            Program
+
+          <input type=text name="program"  class="form-control input-md" type="text">
+
+            Email
+          <input type=text name="email"  class="form-control input-md"  type="text">
+            Description
+          <textarea class="form-control" id="textarea" name="details"></textarea><br>
+          <a href="/myProfile">Cancel</a>
+          <input type="submit" value="Save" class="tfbutton" style="height: 40px; width: 100px;">
+    </form><br>
+    <form action="{{ url_for('deleteUser') }}" method=post>
+    <input type="submit" value="Delete my account" class="tfbutton">
+    </form>
+{% endblock %}

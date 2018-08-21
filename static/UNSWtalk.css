@@ -1,0 +1,103 @@
+/*
+ * written by andrewt@cse.unsw.edu.au October 2017
+ * as a starting point for COMP[29]041 assignment 2
+ * https://cgi.cse.unsw.edu.au/~cs2041/assignments/UNSWtalk/
+ *
+ * Change (or replace) the CSS below to create you own look-and-feel
+ *
+ * You will probably want to add  CSS to this file too
+ */
+
+.unswtalk_heading {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.unswtalk_user_details {
+    background-color: #ABCDEF;
+    color: #204142;
+    white-space: pre;
+    border:thin solid #204142;
+    border-radius: 1em;
+    padding-left: 0.42em;
+}
+
+.unswtalk_button {
+    background-color: #FEDBCA;
+    border:thin solid #904142;
+    border-radius: 0.42em;
+    color: #904142;
+}
+
+.user-profile{
+    margin-top:58px;
+
+}
+
+.my-header{
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 55px;
+    width: 100% ;
+    background: #2c3136;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.my-login{
+    float: right;
+    font-size: 25px;
+    color: white;
+    margin-top: 8px;
+    margin-right: 50px;
+}
+
+
+.my-container {
+    max-width: 960px;
+    height: 300px;
+    margin-top: 55px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.btn.active {
+	display: none;
+}
+
+.btn span:nth-of-type(1)  {
+	display: none;
+}
+.btn span:last-child  {
+	display: block;
+}
+
+.btn.active  span:nth-of-type(1)  {
+	display: block;
+}
+.btn.active span:last-child  {
+	display: none;
+}
+
+.btn:focus, .btn:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    background-color:black;
+}
+.post{
+    height: 100px;
+    width: 800px;
+    border-radius: 5px;
+    border: 1px solid lavenderblush;
+    display: table-cell;
+    font-size:18pt;
+}
+

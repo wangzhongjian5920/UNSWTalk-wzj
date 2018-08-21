@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+<div class="unswtalk_heading">
+{{name}}
+</div>
+{% block body_contents %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+
+
+                <div class="col-md-4 user-profile">
+                <div class="span2">
+                  <img src={{photo}} alt='No-image' class="img-rounded">
+                </div>
+
+                <div class="span4">
+                  <p style="margin-bottom: 0">
+                      <i> Name: </i> {{ name }} <br>
+                      <i> zid:      </i>{% if zid %}{{ zid}}<br>{% else %}NONE<br>{%endif %}
+                      <i> Birthday: </i> {{ birthday }} <br>
+                      <i> Address:  </i> {% if home %}{{home}}<br>{% else %}NONE<br>{%endif %}
+                      <i> Program:  </i> {{ program }} <br>
+                      <i> Introduction:  </i> {% if intro %}{{intro}}<br>{% else %}NONE<br>{%endif %}
+                      <br><br>
+                        {% if own == "False" %}
+                          {% if state == "False" %}
+                                            <form action="{{url_for('sendFriendR')}}">
+                                                <input type="hidden" name='userid' value={{ userID }}>
+                                                <input type='hidden' name='friendid' value={{ zid }}>
+    {#                                            <input type="submit" value="Add friend" >#}
+                                                <button value="Add friend" type="submit" class="btn btn-primary">Follow</button>
+                                            </form>
+                           {% endif %}
+                            {% if state == "True"%}
+                                            <form action="{{url_for('deleteFriend')}}">
+                                                <input type="hidden" name='userid' value={{ userID }}>
+                                                <input type='hidden' name='friendid' value={{ zid }}>
+    {#                                            <input type="submit" value="unfollow" >#}
+                                                <button value="unfollow" type="submit" class="btn btn-default">Unfollow</button>
+                                            </form>
+
+                          {% endif %}
+                            {% if state == "Pending"%}
+                                            <form action="{{url_for('deletePending')}}">
+                                                <input type="hidden" name='userid' value={{ userID }}>
+                                                <input type='hidden' name='friendid' value={{ zid }}>
+    {#                                            <input type="submit" value="delete Request" >#}
+                                                <button value="delete Request" type="submit" class="btn btn-default">Pending</button>
+                                            </form>
+
+                          {% endif %}<br><br>
+                             {% else %}
+                            <form action="{{url_for('editProfile')}}">
+                                    <button value="delete Request" type="submit" class="btn btn-primary">Edit Profile</button>
+                            </form><br><br>
+                        {% endif %}
+                      <i> Friend List:  </i><br>
+                        {% for item in friend %}
+                            <a href="{{url_for('product',var=item.ID) }}">
+                                <img src={{ item.photo }} alt='No-image' style="width: 50px;height: 50px;">
+                            </a>
+                            <a href="{{url_for('product',var=item.ID)}}">
+                                {{item.name}}
+                            </a><br><br>
+                        {% endfor %}
+                  </p>
+                </div>
+                </div>
+
+
+
+                <div class=".col-md-8 user-profile">
+
+                    <i> Post List: </i><br>
+                    <div>{%- for item in postList %}
+                            {{item.time}}<br>
+
+                            {{item.message}}
+                            {% if own == "True"%}
+
+                                <form action="{{url_for('deletePost')}}">
+                                            <input type="hidden" name='postID' value={{ item.postID }}>
+                                            <button value="delete Request" type="submit" class="btn btn-default">Delet Post</button>
+                                </form>
+                                <br><br>
+
+                            {% else %}
+                                <br><br>
+                            {% endif %}
+
+                    {%- endfor -%}
+                    </div>
+
+                </div>
+
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

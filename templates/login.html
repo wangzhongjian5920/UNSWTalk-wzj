@@ -1,0 +1,21 @@
+{#{% extends "layout.html" %}#}
+{% extends "base.html" %}
+
+
+{% block body_contents %}
+    <br><br>
+  <h2>Welcome to UNSWtalk</h2>
+  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+    <br>
+  <form action="{{ url_for('login') }}" method=post>
+    <dl>
+      <dt>Zid:
+      <dd><input type=text name=zid>
+      <dt>Password:
+      <dd><input type=password name=password>
+      <dd><input type=submit value=Login>
+
+    </dl>
+  </form>
+    <a href="{{ url_for('createAccount') }}">Create a new account</a>
+{% endblock %}

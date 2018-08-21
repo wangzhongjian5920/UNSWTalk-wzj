@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+
+{% block body_contents %}
+
+    <div class="container">
+    <br><br><br>
+        <h2>There are {{ num }} results for "{{ content }}":</h2>
+		<div class="starter-template">
+
+			<form id="tfnewsearch" method="get" action="{{url_for('search')}}">
+				<input type="submit" value="Back to search" class="tfbutton">
+			</form>
+		</div>
+
+
+    {% if select|string() == "name" %}
+        <table class="table table-striped" id="example">
+       		<thead>
+            <tr class="info">
+            	<th>User</th>
+            </tr>
+        	</thead>
+         <tbody>
+            {% for item in iList %}
+					<tr>
+					<td>
+                        <a href="{{url_for('product',var=item.split("\n")[0])}}">
+                            <img src=static/dataset-medium/{{item.split("\n")[0]}}/img.jpg alt='No-image' style="width: 50px;height: 50px;">
+                        </a><br>
+                        <a href="{{url_for('product',var=item.split("\n")[0])}}">
+                            {{item.split("\n")[1]}}
+                        </a>
+                    </td>
+					</tr>
+			{%- endfor -%}
+         </tbody>
+    	</table>
+
+    {% else %}
+
+
+
+        <br><br>
+        <!--table-->
+      	 <table class="table table-striped" id="example">
+       		<thead>
+            <tr class="info">
+            	<th>User</th>
+                <th>Content</th>
+                <th>time</th>
+            </tr>
+        	</thead>
+         <tbody>
+            {% for item in iList %}
+					<tr>
+					<td>
+                        <a href="{{url_for('product',var=item.id)}}">
+{#                            {{ item.photo }}#}
+                            <img src={{ item.photo }} alt='No-image' style="width: 50px;height: 50px;">
+                        </a><br>
+                        <a href="{{url_for('product',var=item.id)}}">
+                            {{ item.poster }}<br>
+                        </a>
+                    </td>
+					<td>{{ item.content }}</td>
+					<td>{{ item.time }}</td>
+					</tr>
+			{%- endfor -%}
+         </tbody>
+    	</table>
+
+	</div>
+    <script type="text/javascript"
+		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    {% endif %}
+
+{% endblock %}

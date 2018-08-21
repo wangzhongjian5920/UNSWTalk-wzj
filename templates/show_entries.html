@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block body_contents %}
+
+				<div id="tfheader" style="margin-top: 100px">
+					<form id="tfnewsearch" method=post action="{{ url_for('result')}}">
+
+						<select name=param style="height: 40px; width: 80px;">
+							  <option value=name>Name</option>
+							  <option value=post>Post</option>
+						</select>
+						<input type=text class="tftextinput" name=q size="21" maxlength="120" required style="height: 40px; width: 700px;">
+                        <input type="submit" value="search" class="tfbutton" style="height: 40px; width: 100px;">
+
+					</form>
+					<div class="tfclear"></div>
+				</div>
+{% endblock %}
